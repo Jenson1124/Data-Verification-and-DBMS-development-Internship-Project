@@ -1,0 +1,108 @@
+import pandas as pd
+from datetime import datetime
+
+def compare_and_update_excel(base_file, corrected_file, output_file):
+    """
+    Compares two Excel files and updates the base file with corrections from the corrected file.
+    Handles different row counts and mixed data types.
+    """
+    try:
+        # Read both Excel files, preserving original data types
+        df_base = pd.read_excel(base_file, dtype=str)
+        df_corrected = pd.read_excel(corrected_file, dtype=str)
+        
+        # Validate that files have the same columns
+        if not set(df_base.columns) == set(df_corrected.columns):
+            missing_in_base = set(df_corrected.columns) - set(df_base.columns)
+            missing_in_corrected = set(df_base.columns) - set(df_corrected.columns)
+            raise ValueError(
+                f"Columns don't match.\n"
+                f"Missing in base file: {missing_in_base}\n"
+                f"Missing in corrected file: {missing_in_corrected}"
+            )
+        
+        # Reorder corrected columns to match base
+        df_corrected = df_corrected[df_base.columns]
+        
+        # Create a copy of the base dataframe for comparison
+        df_updated = df_base.copy()
+        
+        # Track changes
+        changes = []
+        error_cells = []
+        
+        # Compare cell by cell up to the last row of the base file
+        max_rows = min(len(df_base), len(df_corrected))
+        
+        for row in range(max_rows):
+            for col in df_base.columns:
+                try:
+                    base_val = str(df_base.at[row, col])
+                    corrected_val = str(df_corrected.at[row, col])
+                    
+                    # Skip if both are empty/NA or values match
+                    if (pd.isna(base_val) and pd.isna(corrected_val)) or base_val == corrected_val:
+                        continue
+                        
+                    # Record the change
+                    changes.append({
+                        'row': row + 2,  # +2 for Excel's 1-based index + header row
+                        'column': col,
+                        'old_value': base_val,
+                        'new_value': corrected_val
+                    })
+                    
+                    # Update the value (keeping original data type)
+                    if pd.isna(df_base.at[row, col]):
+                        df_updated.at[row, col] = corrected_val
+                    else:
+                        # Try to maintain original data type
+                        try:
+                            if isinstance(df_base.at[row, col], (int, float)):
+                                df_updated.at[row, col] = float(corrected_val) if '.' in corrected_val else int(corrected_val)
+                            else:
+                                df_updated.at[row, col] = corrected_val
+                        except:
+                            df_updated.at[row, col] = corrected_val
+                            
+                except Exception as cell_error:
+                    error_cells.append({
+                        'row': row + 2,
+                        'column': col,
+                        'error': str(cell_error)
+                    })
+        
+        # Save the updated file
+        df_updated.to_excel(output_file, index=False)
+        
+        # Generate reports
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        
+        if changes:
+            pd.DataFrame(changes).to_excel(f"change_log_{timestamp}.xlsx", index=False)
+        
+        if error_cells:
+            pd.DataFrame(error_cells).to_excel(f"error_log_{timestamp}.xlsx", index=False)
+        
+        print("\n=== Process Summary ===")
+        print(f"Total rows processed: {max_rows}")
+        print(f"Cells changed: {len(changes)}")
+        print(f"Cells with errors: {len(error_cells)}")
+        print(f"\nUpdated file saved to: {output_file}")
+        
+        if len(df_base) != len(df_corrected):
+            print("\nWarning: Files had different row counts")
+            print(f"Base file rows: {len(df_base)}")
+            print(f"Corrected file rows: {len(df_corrected)}")
+            print("Only compared the first {} rows".format(max_rows))
+            
+    except Exception as e:
+        print(f"\nCritical Error: {str(e)}")
+
+# Your specific file names
+if __name__ == "__main__":
+    base_file = "Material data collection_Stryker.xlsx"
+    corrected_file = "Corrected Values Material data collection_Stryker.xlsx"
+    output_file = "Updated_Material_data_collection_Stryker.xlsx"
+    
+    compare_and_update_excel(base_file, corrected_file, output_file)
