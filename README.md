@@ -1,63 +1,80 @@
-AI-Based Material Data Verification and Extraction System
+AI-Based Material Data Verification & Extraction System
+
 Overview
 
-This project implements an AI-assisted pipeline for extracting engineering material properties from technical PDF reference documents.
+Engineering material properties are often stored in semi-structured technical PDFs, making manual extraction slow and error-prone.
 
-Engineering datasets are often stored in semi-structured or unstructured PDFs, making manual extraction slow and error-prone. This system automates the process by combining Python-based text extraction with Large Language Model (LLM) APIs to identify and structure key material properties.
+This project implements an AI-assisted material data extraction and verification pipeline that automatically processes technical PDF documents and extracts structured engineering property data.
 
-The project demonstrates how AI and NLP techniques can assist in material data verification workflows, reducing manual effort and enabling structured data generation for engineering analysis.
+The system combines Python-based PDF processing with Large Language Model (LLM) APIs to identify and structure key material properties such as density, yield strength, Young's modulus, and thermal properties.
+
+The goal is to automate material data verification workflows and reduce the time required to collect engineering data from reference documents.
+
 
 Problem Statement
 
-Material property data (such as Yield Strength, Density, Young’s Modulus, etc.) is typically stored in technical datasheets and research PDFs. Extracting this data manually is:
+Material property data is commonly distributed across:
 
-Time-consuming
-Prone to human error
-Difficult to standardize across different document formats
+technical datasheets
+research papers
+engineering reference documents
 
-This project automates the extraction, validation, and formatting of material properties from reference PDFs.
+Extracting this information manually is:
 
-Features
-Automated PDF text extraction from technical reference documents
-AI-powered material property identification using LLM APIs
-Conversion of unstructured text → structured property data
-Modular pipeline for processing multiple material reference PDFs
-Standardized formatting of extracted results
-Error handling and logging for missing or inconsistent data
+• time-consuming
+• inconsistent across formats
+• prone to human error
+
+This system automates material property extraction, formatting, and verification from reference PDFs.
+
+
+Key Features
+
+• Automated PDF text extraction from technical documents
+• AI-powered property extraction using LLM APIs
+• Conversion of unstructured PDF text → structured property data
+• Processing of multiple material reference documents
+• Standardized formatting of extracted properties
+• Modular architecture for extending to additional material datasets
+
 Technologies Used
 Programming Language
+
 Python
+
 Libraries
 PyPDF2 – PDF text extraction
-re (Regular Expressions) – pattern matching and property detection
+re (Regex) – pattern matching and property detection
 requests – API communication
 APIs / AI Models
 Hugging Face Inference API
 Together AI API
 Data Format
-JSON for structured data representation
-Project Architecture
+
+JSON for structured material data representation
+
+System Architecture
 PDF Reference Files
         │
         ▼
 PDF Text Extraction (PyPDF2)
         │
         ▼
-Text Processing & Prompt Creation
+Text Processing & Prompt Generation
         │
         ▼
 LLM-Based Property Extraction
 (Hugging Face API)
         │
         ▼
-Structured Property Data (JSON)
+Structured JSON Property Data
         │
         ▼
 Output Formatting
 (Together AI API)
         │
         ▼
-Readable Material Property Report
+Readable Material Property Output
 Example Output
 Processing PDFs and formatting extracted material properties...
 
@@ -73,6 +90,18 @@ Poisson's Ratio: 0.37
 Young's Modulus: 105 GPa
 Thermal Conductivity: 16.4 W/mK
 Thermal Expansion Coefficient: 8.6 m/mC
+Project Structure
+material-data-verification/
+│
+├── main.py
+├── references/
+│   ├── Titanium ref 1.pdf
+│   ├── Titanium ref 2.pdf
+│   └── ...
+│
+├── requirements.txt
+├── README.md
+└── .env
 Installation
 
 Clone the repository:
@@ -82,37 +111,57 @@ cd material-data-verification
 
 Install dependencies:
 
+pip install -r requirements.txt
+
+Or manually install:
+
 pip install PyPDF2 requests
 Configuration
 
-Update the API keys in the script:
+Create a .env file to store API keys securely:
 
-HUGGINGFACE_API_KEY = "your-huggingface-api-key"
-TOGETHER_API_KEY = "your-together-ai-api-key"
+HUGGINGFACE_API_KEY=your-huggingface-api-key
+TOGETHER_API_KEY=your-together-ai-api-key
 
-Set the path to your reference PDFs:
+Update the path to the reference PDFs inside the script:
 
 PDF_FOLDER = "path/to/reference/pdfs"
 Running the Project
 
-Run the script:
+Run the main script:
 
 python main.py
 
-The system will process the PDFs and print extracted material properties.
+The system will process the reference PDFs and print extracted material properties.
 
 Use Cases
-Engineering material data verification
-Automated datasheet analysis
-AI-assisted technical document processing
-Preprocessing data for material databases
+
+• Engineering material data verification
+• Automated datasheet processing
+• AI-assisted document analysis
+• Preprocessing material datasets for databases
+
 Future Improvements
-Support for additional material properties
-Improved accuracy with fine-tuned LLM prompts
-Integration with structured material databases
-Web or GUI interface for easier interaction
-Batch processing of large material datasets
+
+• Support for additional material properties
+• Improved extraction accuracy using advanced NLP pipelines
+• Integration with engineering material databases
+• Development of a web or GUI interface
+• Large-scale batch processing for material libraries
+
 Author
 
 Jenson Antony
 Data Verification and Database Development Internship Project
+
+License
+
+This project is intended for educational and research purposes.
+
+If you'd like, I can also help you create a very impressive GitHub repo setup that looks professional to recruiters, including:
+
+• a requirements.txt file
+• a clean project folder structure
+• a .gitignore for Python projects
+• instructions to push everything properly to GitHub
+• a project diagram image (repos look much better with visuals).
