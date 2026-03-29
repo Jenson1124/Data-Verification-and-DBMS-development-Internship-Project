@@ -151,17 +151,11 @@ Future Improvements
 
 Author
 
-Jenson Antony
+Jenson Antony, 
 Data Verification and Database Development Internship Project
 
 License
 
 This project is intended for educational and research purposes.
 
-If you'd like, I can also help you create a very impressive GitHub repo setup that looks professional to recruiters, including:
 
-• a requirements.txt file
-• a clean project folder structure
-• a .gitignore for Python projects
-• instructions to push everything properly to GitHub
-• a project diagram image (repos look much better with visuals).
