@@ -77,7 +77,7 @@ Installation
 
 Clone the repository:
 
-git clone https://github.com/your-username/material-data-verification.git
+git clone https://github.com/Jenson1124/Data-Verification-and-DBMS-development-Internship-Project.git
 cd material-data-verification
 
 Install dependencies:
