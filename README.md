@@ -1,59 +1,77 @@
-AI-Based Material Data Verification & Extraction System
+# AI-Based Material Data Verification & Extraction System
 
-Overview
+## Overview
 
 Engineering material properties are often stored in semi-structured technical PDFs, making manual extraction slow and error-prone.
 
-This project implements an AI-assisted material data extraction and verification pipeline that automatically processes technical PDF documents and extracts structured engineering property data.
+This project implements an **AI-assisted material data extraction and verification pipeline** that automatically processes technical PDF documents and extracts structured engineering property data.
 
-The system combines Python-based PDF processing with Large Language Model (LLM) APIs to identify and structure key material properties such as density, yield strength, Young's modulus, and thermal properties.
+The system combines **Python-based PDF processing with Large Language Model (LLM) APIs** to identify and structure key material properties such as:
 
-The goal is to automate material data verification workflows and reduce the time required to collect engineering data from reference documents.
+* Density
+* Yield Strength
+* Young's Modulus
+* Thermal Properties
 
+The goal is to **automate material data verification workflows** and reduce the time required to collect engineering data from reference documents.
 
-Problem Statement
+---
+
+## Problem Statement
 
 Material property data is commonly distributed across:
 
-technical datasheets
-research papers
-engineering reference documents
+* Technical datasheets
+* Research papers
+* Engineering reference documents
 
 Extracting this information manually is:
 
-• time-consuming
-• inconsistent across formats
-• prone to human error
+* Time-consuming
+* Inconsistent across formats
+* Prone to human error
 
-This system automates material property extraction, formatting, and verification from reference PDFs.
+This system **automates material property extraction, formatting, and verification from reference PDFs.**
 
+---
 
-Key Features
+## Key Features
 
-• Automated PDF text extraction from technical documents
-• AI-powered property extraction using LLM APIs
-• Conversion of unstructured PDF text → structured property data
-• Processing of multiple material reference documents
-• Standardized formatting of extracted properties
-• Modular architecture for extending to additional material datasets
+* Automated PDF text extraction from technical documents
+* AI-powered property extraction using LLM APIs
+* Conversion of **unstructured PDF text → structured property data**
+* Processing of multiple material reference documents
+* Standardized formatting of extracted properties
+* Modular architecture for extending to additional material datasets
 
-Technologies Used
-Programming Language
+---
 
-Python
+## Technologies Used
 
-Libraries
-PyPDF2 – PDF text extraction
-re (Regex) – pattern matching and property detection
-requests – API communication
-APIs / AI Models
-Hugging Face Inference API
-Together AI API
-Data Format
+### Programming Language
 
-JSON for structured material data representation
+* Python
 
-System Architecture
+### Libraries
+
+* **PyPDF2** – PDF text extraction
+* **re (Regex)** – Pattern matching and property detection
+* **requests** – API communication
+
+### APIs / AI Models
+
+* Hugging Face Inference API
+* Together AI API
+
+### Data Format
+
+* JSON for structured material data representation
+
+---
+
+## System Architecture
+
+```
 PDF Reference Files
         │
         ▼
@@ -75,7 +93,13 @@ Output Formatting
         │
         ▼
 Readable Material Property Output
-Example Output
+```
+
+---
+
+## Example Output
+
+```
 Processing PDFs and formatting extracted material properties...
 
 Titanium ref 1.pdf → Titanium Grade 2
@@ -90,7 +114,13 @@ Poisson's Ratio: 0.37
 Young's Modulus: 105 GPa
 Thermal Conductivity: 16.4 W/mK
 Thermal Expansion Coefficient: 8.6 m/mC
-Project Structure
+```
+
+---
+
+## Project Structure
+
+```
 material-data-verification/
 │
 ├── main.py
@@ -102,60 +132,88 @@ material-data-verification/
 ├── requirements.txt
 ├── README.md
 └── .env
-Installation
+```
+
+---
+
+## Installation
 
 Clone the repository:
 
+```bash
 git clone https://github.com/Jenson1124/Data-Verification-and-DBMS-development-Internship-Project.git
 cd material-data-verification
+```
 
 Install dependencies:
 
+```bash
 pip install -r requirements.txt
+```
 
 Or manually install:
 
+```bash
 pip install PyPDF2 requests
-Configuration
+```
 
-Create a .env file to store API keys securely:
+---
 
+## Configuration
+
+Create a `.env` file to store API keys securely:
+
+```
 HUGGINGFACE_API_KEY=your-huggingface-api-key
 TOGETHER_API_KEY=your-together-ai-api-key
+```
 
 Update the path to the reference PDFs inside the script:
 
+```python
 PDF_FOLDER = "path/to/reference/pdfs"
-Running the Project
+```
+
+---
+
+## Running the Project
 
 Run the main script:
 
+```bash
 python main.py
+```
 
 The system will process the reference PDFs and print extracted material properties.
 
-Use Cases
+---
 
-• Engineering material data verification
-• Automated datasheet processing
-• AI-assisted document analysis
-• Preprocessing material datasets for databases
+## Use Cases
 
-Future Improvements
+* Engineering material data verification
+* Automated datasheet processing
+* AI-assisted document analysis
+* Preprocessing material datasets for databases
 
-• Support for additional material properties
-• Improved extraction accuracy using advanced NLP pipelines
-• Integration with engineering material databases
-• Development of a web or GUI interface
-• Large-scale batch processing for material libraries
+---
 
-Author
+## Future Improvements
 
-Jenson Antony, 
+* Support for additional material properties
+* Improved extraction accuracy using advanced NLP pipelines
+* Integration with engineering material databases
+* Development of a web or GUI interface
+* Large-scale batch processing for material libraries
+
+---
+
+## Author
+
+**Jenson Antony**
 Data Verification and Database Development Internship Project
 
-License
+---
 
-This project is intended for educational and research purposes.
+## License
 
-
+This project is intended for **educational and research purposes**.
