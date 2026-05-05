@@ -215,6 +215,6 @@ Data Verification and Database Development Internship Project
 
 ---
 
-## Contributions by R RoshiniDevi
+## Contributions by R Roshini Devi
 - Worked on data validation and DBMS-related tasks
 - Contributed to implementation and testing
