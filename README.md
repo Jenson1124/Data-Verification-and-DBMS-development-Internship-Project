@@ -210,6 +210,7 @@ The system will process the reference PDFs and print extracted material properti
 ## Author
 
 **Jenson Antony**
+
 Data Verification and Database Development Internship Project
 
 ---
