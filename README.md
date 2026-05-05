@@ -215,6 +215,6 @@ Data Verification and Database Development Internship Project
 
 ---
 
-## License
-
-This project is intended for **educational and research purposes**.
+## Contributions by R RoshiniDevi
+- Worked on data validation and DBMS-related tasks
+- Contributed to implementation and testing
